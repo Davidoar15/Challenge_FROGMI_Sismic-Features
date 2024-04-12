@@ -1,0 +1,74 @@
+<!-- app/views/inicio/index.html.erb -->
+
+<header>
+  <h1 class="title">Bienvenido a Sismic - DATA</h1>
+  <section class="logos">
+    <p>Colaboración con</p>
+    <div>
+      <div class="frogmi">
+        <a href="https://frogmi.com/">
+          <%= image_tag("logo_frogmi.png", :alt => "frogmi_logo")%>
+        </a>
+      </div>
+      <div class="usgs">
+        <a href="https://www.usgs.gov/programs/earthquake-hazards">
+          <%= image_tag("usgs_logo.png", :alt => "usgs_logo")%>
+        <a>
+      </div>
+    </div>
+  </section>
+</header>
+
+<h2 class="info">Encuentra la información sismológica más reciente</h2>
+
+<main>
+  <section class="control-container">
+    <form id="filters-form">
+        <div>
+          <label for="mag-type-filter"><strong>Tipo de magnitud</strong></label>
+          <select id="mag-type-filter" name="mag_type">
+            <option value="">Todos</option>
+            <option value="md">MD</option>
+            <option value="ml">ML</option>
+            <option value="ms">MS</option>
+            <option value="mw">MW</option>
+            <option value="me">ME</option>
+            <option value="mi">MI</option>
+            <option value="mb">MB</option>
+            <option value="mlg">MLG</option>
+            <option value="mww">MWW</option>
+            <option value="mwr">MWR</option>
+            <option value="mb_lg">MB-LG</option>
+            <option value="mh">MH</option>
+          </select>
+        </div>
+        <div>
+          <label for="per-page-filter"><strong>Mostrar por página</strong></label>
+          <input id="per-page-filter" name="per_page" type="number" min="1" max="1000" value="10">
+        </div>
+        <div>
+          <label for="page-filter"><strong>Página</strong></label>
+          <input id="page-filter" name="page" type="number" min="1" value="1">
+        </div>
+        <button type="submit">Aplicar</button>
+    </form>
+
+    <div id="pagination-buttons"></div>
+  </section>
+
+  <section id="features-container"></section>
+
+  <section id="no-features-msg" style="display: none;">
+    <p>No hay ninguna información disponible. Intente ajustar los filtros. Ejemplo:</p>
+    <ul>
+      <li><strong>Tipo de magnitud: </strong>MD</li>
+      <li><strong>Mostrar por página: </strong>10</li>
+      <li><strong>Página: </strong>1</li>
+    </ul>
+  </section>
+
+  <footer>
+    <h3 class="footer-h3">¿Desea conocer más sobre la API empleada? Revise el Repositorio: </h3>
+    <a href="https://github.com/Davidoar15/Challenge_FROGMI_Sismic-Features"><strong>Challenge_FROGMI_Sismic-Features</strong></a>
+  </footer>
+</main>

@@ -1,0 +1,394 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(141, 215, 250);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.title {
+  color: rgb(216, 60, 60);
+  margin-right: 3vw;
+}
+
+.logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 3vw;
+}
+.logos > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+.logos > p {
+  font-size: small;
+}
+
+.frogmi {
+  width: 100px;
+  height: 100px;
+}
+.frogmi > a > img {
+  width: 100%;
+  height: 100%;
+}
+
+.usgs {
+  width: 225px;
+  height: 100px;
+}
+.usgs > a > img {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+  margin-bottom: 7vh;
+}
+
+#filters-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5vw;
+}
+#filters-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+#filters-form > button {
+  height: 30px;
+  border: 2px solid rgb(44, 129, 31);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#mag-type-filter {
+  width: 155px;
+  padding: 3px;
+}
+#per-page-filter, #page-filter {
+  width: 145px;
+  padding: 3px;
+}
+
+#pagination-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+#pagination-buttons > button {
+  width: 35px;
+  height: 22px;
+  border: 2px solid rgb(216, 60, 60);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  background-color: #027cff; 
+  color: white; 
+  font-weight: bold; 
+}
+
+#features-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vh;
+  margin-bottom: 5vh;
+}
+
+.feature > summary {
+  font-size: x-large;
+  border: 4px inset rgb(216, 60, 60);
+  border-radius: 20px;
+  padding: 7px;
+  cursor: pointer;
+  background-color: rgb(119, 200, 251);
+  width: 695px;
+}
+
+.content {
+  border: 3px inset rgb(216, 60, 60);
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgb(187, 218, 254);
+  width: 700px;
+}
+.content > ul > li {
+  margin-bottom: 7px;
+}
+.content > h3 {
+  margin-left: 10px;
+}
+
+.comments {
+  margin-bottom: 3vh;
+  width: 95%;
+  height: 150px;
+  overflow-y: auto;
+  border: 2px inset rgb(216, 60, 60);
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.comments > ul > li {
+  margin-bottom: 5px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  margin-bottom: 15px;
+}
+
+.comment-form > textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  resize: none;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.comment-form > button {
+  border: 2px inset rgb(216, 60, 60);
+  border-radius: 10px;
+  text-transform: uppercase;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#no-features-msg {
+  text-align: center;
+}
+#no-features-msg > ul > li {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+footer {
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  width: 100vw;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color:#027cff;
+}
+
+@media (max-width: 860px) {
+  .title {
+    margin-right: 1vw;
+  }
+
+  .logos {
+    margin-left: 1vw;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 815px) {
+  header {
+    flex-direction: column;
+  }
+
+  .title {
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .logos {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 750px) {
+  .feature {
+    width: 600px;
+  }
+
+  .feature > summary {
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 715px) {
+  .feature > summary {
+    font-size: medium;
+  }
+}
+
+@media (max-width: 670px) {
+  #filters-form {
+    flex-direction: column;
+    gap: 2vh;
+  }
+}
+
+@media (max-width: 660px) {
+  #features-container {
+    margin-left: -10px;
+  }
+
+  .feature {
+    width: 400px;
+  }
+
+  .content > h3 {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+  .content > ul {
+    padding-left: 30px;
+  }
+  .content > ul > li {
+    font-size: small;
+  }
+
+  .comments {
+    width: 98%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .comments > ul {
+    padding-left: 30px;
+  }
+  .comments > ul > li {
+    font-size: small;
+  }
+
+  .footer-h3 {
+    width: 90%;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-h3 {
+    font-size: 0.9rem;
+  }
+  footer > a {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 455px) {
+  #features-container {
+    margin-left: 60px;
+  }
+
+  .feature {
+    width: 100vw;
+  }
+
+  .feature > summary {
+    width: 80%;
+    font-size: small;
+  }
+  .content {
+    width: 80%;
+  }
+
+  .comment-form > textarea {
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .frogmi {
+    width: 70px;
+    height: 70px;
+  }
+
+  .usgs {
+    width: 195px;
+    height: 70px;
+  }
+
+  .info {
+    font-size: 1em;
+  }
+
+  #filters-form > div > label {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 300px) {
+  .frogmi {
+    width: 60px;
+    height: 60px;
+  }
+
+  .usgs {
+    width: 185px;
+    height: 60px;
+  }
+
+  #features-container {
+    margin-left: 30px;
+  }
+
+  .footer-h3 {
+    font-size: 0.8rem;
+  }
+  footer > a {
+    font-size: 0.8rem;
+  }
+}
