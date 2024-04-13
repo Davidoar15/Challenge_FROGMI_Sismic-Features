@@ -2,6 +2,7 @@ require_relative '../models/feature.rb'
 require_relative '../models/comment.rb'
 
 class FeaturesController < ApplicationController
+  # GET. Mostrar todos los Feature
   def index
     features = Feature.all
 
@@ -11,11 +12,14 @@ class FeaturesController < ApplicationController
       features = features.where(mag_type: mag_types)
     end
 
-    # Manejar la paginación
+    # Filtrar/Manejar la paginación
     per_page = params[:per_page].present? ? params[:per_page].to_i : 25 
-    per_page = [per_page, 1000].min # Limitar per_page a un máximo de 1000
+    per_page = [per_page, 1000].min
+
     page = params[:page].present? ? params[:page].to_i : 1
+
     total = features.count
+
     features = features.limit(per_page).offset((page - 1) * per_page)
 
     response = {
@@ -30,6 +34,7 @@ class FeaturesController < ApplicationController
     render json: response
   end
 
+  # GET. Mostrar una Feature por su ID, junto a sus Comment relacionados
   def show 
     feature = Feature.find(params[:feature_id])
     comments = Comment.where(feature_id: feature[:id])
@@ -43,6 +48,8 @@ class FeaturesController < ApplicationController
   end
 
   private
+  # Funciones para mandar la response en un formato adecuado
+
   def serialize_features(feature)
     {
       id: feature.id,

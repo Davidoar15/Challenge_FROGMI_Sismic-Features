@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :find_feature
 
+  # POST. Crear un Comment relacionado a una Feature por su ID 
   def create
     @comment = @feature.comments.build(comment_params)
     if @comment.save

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const paginationButtons = document.getElementById("pagination-buttons");
   const featuresContainer = document.getElementById("features-container");
 
-  // Manejar la solicitud inicial y mostrar las características
+  // Mostrar las Feature
   handleInitialFetch();
 
   filtersForm.addEventListener("submit", function (event) {
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     handleInitialFetch();
   });
 
+  // Función para Manejar la solicitud inicial
   async function handleInitialFetch() {
     const magType = document.getElementById("mag-type-filter").value;
     const perPage = parseInt(document.getElementById("per-page-filter").value);
@@ -31,13 +32,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  // Función para Renderizar cada Feature
   function renderFeatures(data) {
-    // Limpiar el contenedor de características
+    // Limpiar el contenedor de Feature
     featuresContainer.innerHTML = "";
 
-    // Iterar sobre las características y agregarlas al contenedor
+    // Iterar y agregarlas al contenedor
     data.data.forEach((feature) => {
-      // Crear elemento HTML para mostrar la característica
+      // Crear elemento HTML
       const featureElement = document.createElement("details");
       featureElement.classList.add("feature");
 
@@ -75,16 +77,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         </section>
     `;
 
-      // Agregar los detalles de la característica al contenedor
       featuresContainer.appendChild(featureElement);
 
-      // Obtener el contenedor de comentarios
+      // Obtener el contenedor de Comment
       const commentsContainer = document.getElementById(
         `comments-container-${feature.id}`
       );
 
-      // Solicitar y mostrar comentarios
-      fetchFeaturesComments(feature.id)
+      // Solicitar y mostrar los Comment
+      fetchFeatureComments(feature.id)
         .then((commentsHTML) => {
           commentsContainer.innerHTML = commentsHTML;
         })
@@ -103,6 +104,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         commentButton.disabled = !commentTextarea.value.trim();
       });
 
+      // Manejar Formulario para "Postear"/crear un Comment
       const commentForm = document.getElementById(`comment-form-${feature.id}`);
       commentForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           sendComment(feature.id, commentText)
             .then(() => {
               alert("¡Comentario enviado correctamente!");
-              fetchFeaturesComments(feature.id)
+              fetchFeatureComments(feature.id)
                 .then((commentsHTML) => {
                   commentsContainer.innerHTML = commentsHTML;
                 })
@@ -133,8 +135,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
+  // Función para renderizar los botones de la paginación
   function renderPaginationButtons(pagination) {
-    // Limpiar los botones de paginación
+    // Limpiar los botones
     paginationButtons.innerHTML = "";
 
     // Calcular la cantidad de páginas y la página actual
@@ -142,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const currentPage = pagination.current_page;
 
     // Definir el rango de botones a mostrar
-    const range = 2; // Mostrar 2 botones antes y después de la página actual
+    const range = 2; 
 
     // Mostrar botones de páginas dentro del rango
     for (let i = currentPage - range; i <= currentPage + range; i++) {
@@ -156,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const button = document.createElement("button");
     button.textContent = pageNumber;
     if (isActive) {
-      button.classList.add("active"); // Agregar clase para resaltar el botón activo
+      button.classList.add("active");
     }
     button.addEventListener("click", async function () {
       const perPage = parseInt(
@@ -173,7 +176,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-async function fetchFeaturesComments(id) {
+// Función para Obtener los Comment de una Feature
+async function fetchFeatureComments(id) {
   const response = await fetch(`/api/features/${id}`);
   const data = await response.json();
   if (data.data.comments.length === 0) {
@@ -186,6 +190,7 @@ async function fetchFeaturesComments(id) {
   }
 }
 
+// Función para Crear un Comment en una Feature
 async function sendComment(featureId, commentBody) {
   try {
     const body = JSON.stringify({
